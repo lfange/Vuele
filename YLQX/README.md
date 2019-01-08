@@ -1,6 +1,6 @@
-# y
+# project
 
-> y
+> project
 
 ## Build Setup
 
