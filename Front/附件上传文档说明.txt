@@ -17,4 +17,5 @@ import filesUpload from '@/plugins/filesUpload.vue'
    InServerFilesOb  Parms为一个[]
    filesLoading     Parms为bool
  参考----证照--身份证（UserIdNo）
+test
 
