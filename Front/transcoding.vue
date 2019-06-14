@@ -1,4 +1,4 @@
-<template>
+//<template>
     <span>{{ loading ? '...' : displayText}}
         <span v-if="loading" class="el-icon-loading"></span>
     </span>
@@ -54,7 +54,7 @@ export default {
                         this.$emit('complete', text, this.value, this.scope);
                         this.displayText = text || this.emptyText;
                     })
-                    .catch(e => {
+                    .catch(e => {  // second
                         // first
                         this.loading = false;
                         this.$emit('error', this.value, this.scope);
