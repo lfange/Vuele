@@ -54,8 +54,13 @@ export default {
                         this.$emit('complete', text, this.value, this.scope);
                         this.displayText = text || this.emptyText;
                     })
+<<<<<<< HEAD
                     .catch(e => {
                         this.loading = false;
+=======
+                    .catch((e) => {
+                        this.loading = false
+>>>>>>> be02ce168ca0f96cfbfce2e94ffd41803e5119d8
                         this.$emit('error', this.value, this.scope);
                         this.displayText = this.errorText || this.value;
                     });
