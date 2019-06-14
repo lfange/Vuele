@@ -4,7 +4,7 @@
         </el-input>
         <el-input v-model="form.ParentModuleId" v-show="ParentModuleIdShow"></el-input>
         <el-tree v-show="treeVisible" :data="treeData" :props="defaultProps" node-key="treeData.id" @node-click="_handleNodeClick" class="tree"></el-tree>
-      test
+      get
     </div>
 </template>
 
