@@ -54,7 +54,7 @@ export default {
                         this.$emit('complete', text, this.value, this.scope);
                         this.displayText = text || this.emptyText;
                     })
-                    .catch(e => {
+                    .catch((e) => {
                         this.loading = false
                         this.$emit('error', this.value, this.scope);
                         this.displayText = this.errorText || this.value;
