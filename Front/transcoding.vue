@@ -59,6 +59,7 @@ export default {
                         this.$emit('error', this.value, this.scope);
                         this.displayText = this.errorText || this.value;
                     });
+                    console.log(this)
             }
         }
     }
