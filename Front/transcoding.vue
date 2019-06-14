@@ -56,7 +56,7 @@ export default {
                     })
                     .catch(e => {  // second del des
                         // first
-                        this.loading = false; // false
+                        this.loading = false; // falsefalse
                         this.$emit('error', this.value, this.scope);
                         this.displayText = this.errorText || this.value;
                     });
