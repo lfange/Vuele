@@ -1,0 +1,9 @@
+import { defineComponent } from 'vue'
+
+const App = defineComponent({
+  setup() {
+    return () => (<router-view />)
+  }
+})
+
+export default App
