@@ -1,11 +1,34 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import Layout from '@/view/layout/Layout.vue'
+const Layout = () => import('@/view/layout/Layout.vue')
 
 const routes: any[] = [
   {
     path: '/',
-    redirect: '/layout'
+    component: Layout,
+    children: [
+      {
+        path: '/dball',
+        name: 'dball',
+        component: () => import('@/view/dball.tsx'),
+        meta: {
+          title: 'meta'
+        }
+      },
+      {
+        path: '/luckb',
+        name: 'luckb',
+        component: () => import('@/view/luckb.vue'),
+        meta: {
+          title: 'meta'
+        }
+      },
+    ]
+  },
+  {
+    path: '/index',
+    name: 'index',
+    component: () => import('@/view/index.tsx')
   },
   {
     path: '/index',
@@ -22,22 +45,7 @@ const routes: any[] = [
     name: 'layout',
     component: () => import('@/components/layout/layout.tsx')
   },
-  {
-    path: '/dball',
-    name: 'dball',
-    component: () => import('@/view/dball.tsx'),
-    meta: {
-      title: 'meta'
-    }
-  },
-  {
-    path: '/luckb',
-    name: 'luckb',
-    component: () => import('@/view/luckb.vue'),
-    meta: {
-      title: 'meta'
-    }
-  },
+
   
 ]
 
