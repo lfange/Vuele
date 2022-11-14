@@ -1,5 +1,6 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
+    {{ routers }} {{ routers.length }}
     <el-menu
       :default-active="$route.path"
       :collapse="isCollapse"
@@ -9,29 +10,33 @@
       :collapse-transition="false"
       mode="vertical"
     >
+      <div @click="Routeset">state.routers</div>
       <sidebar-item v-for="route in routers" :key="route.path" :item="route" :base-path="route.path"/>
+      <SideBarItem  v-for="route in routers" :key="route.path" :item="route" :base-path="route.path" :title="'SideBarItem'" />
     </el-menu>
   </el-scrollbar>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
+<script lang="ts" setup>
+// import { mapGetters } from 'vuex'
 import variables from '@/styles/variables.scss'
-import SidebarItem from './SidebarItem'
+import { storeToRefs } from 'pinia'
+import { useappStore } from '@/store/app'
+import { useuserStore } from '@/store/user.ts'
+import SideBarItem from './SideBarItem.tsx'
+import { computed } from 'vue';
 
-export default {
-  components: { SidebarItem },
-  computed: {
-    ...mapGetters([
-      'sidebar', 'routers'
-    ]),
+const appStore = useappStore()
 
-    variables() {
-      return variables
-    },
-    isCollapse() {
-      return !this.sidebar.opened
-    }
-  }
+const userStore = useuserStore()
+
+const isCollapse = computed(() => appStore.sidebar.opened)
+
+const { routers } = storeToRefs(userStore)
+
+const Routeset = () => {
+  console.log('Routeset', routers)
+  userStore.GetRoutes()
 }
+
 </script>

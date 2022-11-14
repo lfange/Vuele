@@ -17,6 +17,7 @@ export default defineConfig(({ command, mode }) => {
     base: './', // index.html文件所在位置
     root: './', // js导入的资源路径，src
     resolve: {
+      extensions: ['.ts', '.vue', '.tsx'],
       alias: {
         '@': path.resolve(__dirname, 'src')
       }

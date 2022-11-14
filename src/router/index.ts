@@ -1,11 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-const Layout = () => import('@/view/layout/Layout.vue')
+const Layout = () => import('@/view/layout/Layout.tsx')
 
 const routes: any[] = [
   {
     path: '/',
     component: Layout,
+    // name: 'dashboard',
     children: [
       {
         path: '/dball',
@@ -26,9 +27,9 @@ const routes: any[] = [
     ]
   },
   {
-    path: '/index',
-    name: 'index',
-    component: () => import('@/view/index.tsx')
+    path: '/tsx',
+    name: 'tsx',
+    component: () => import('@/view/layout/Layout.tsx')
   },
   {
     path: '/index',

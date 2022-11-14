@@ -1,6 +1,54 @@
-<template>
+import { defineComponent, onMounted, reactive } from 'vue'
+import classname from 'classnames'
+// import Navbar from './components/Navbar';
+import AppMain from './components/AppMain.vue'
+import Sidebar from './components/Sidebar/index.tsx'
+// import { Navbar, Sidebar, AppMain, TagsView } from './components';
+import './layout.scss'
+
+const Layout = defineComponent({
+  name: 'Layout',
+  setup() {
+    const St = reactive({
+      device: 'mobile',
+      sidebar: {
+        opened: false
+      }
+    })
+
+    onMounted(() => {
+
+    })
+
+    const handleClickOutside = () => {
+      // this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
+      console.log('handleClickOutside')
+    }
+    const classObj = () => {}
+
+    const DrawBack = () => St.device==='mobile' && St.sidebar.opened && <div class="drawer-bg" onclick={handleClickOutside} />
+
+    // classObj,
+    return () => (
+      <div className={classname('app-wrapper')}>
+        { DrawBack() }
+        <Sidebar class="sidebar-container" />
+        <div class="main-container">
+          classObj,
+          {/* <Navbar /> */}
+          {/* <tags-view /> */}
+          {/* <AppMain /> */}
+        </div>
+      </div>
+    )
+  }
+})
+
+export default Layout
+
+{
+  /* <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
     <sidebar class="sidebar-container"/>
     <div class="main-container">
       <navbar/>
@@ -10,7 +58,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+
+
+
+</script>
+<!-- <script>
 import { Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
@@ -45,10 +98,11 @@ export default {
     }
   }
 }
-</script>
+</script> -->
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "src/styles/mixin.scss";
+  
   .app-wrapper {
     @include clearfix;
     position: relative;
@@ -68,4 +122,5 @@ export default {
     position: absolute;
     z-index: 999;
   }
-</style>
+</style> */
+}
