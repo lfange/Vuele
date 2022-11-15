@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@element-plus/icons-vue': ^2.0.10
+  '@types/lodash-es': ^4.17.6
   '@types/node': ^18.11.7
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^3.2.0
@@ -14,7 +15,9 @@ specifiers:
   eslint: ^8.26.0
   eslint-plugin-vue: ^9.6.0
   js-cookie: ^3.0.1
+  lodash-es: ^4.17.21
   nprogress: ^0.2.0
+  path-to-regexp: ^6.2.1
   pinia: ^2.0.23
   pinia-plugin-persistedstate: ^2.3.0
   sass: ^1.55.0
@@ -31,6 +34,7 @@ dependencies:
   core-js: 3.26.0
   element-plus: 2.2.19_vue@3.2.41
   js-cookie: 3.0.1
+  lodash-es: 4.17.21
   nprogress: 0.2.0
   pinia: 2.0.23_l7r24p6nevbtlimqmqcwa3ouhu
   pinia-plugin-persistedstate: 2.3.0_pinia@2.0.23
@@ -39,6 +43,7 @@ dependencies:
   vue-router: 4.1.6_vue@3.2.41
 
 devDependencies:
+  '@types/lodash-es': 4.17.6
   '@types/node': 18.11.7
   '@types/nprogress': 0.2.0
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.1+vue@3.2.41
@@ -47,6 +52,7 @@ devDependencies:
   classnames: 2.3.2
   eslint: 8.26.0
   eslint-plugin-vue: 9.6.0_eslint@8.26.0
+  path-to-regexp: 6.2.1
   sass: 1.55.0
   typescript: 4.8.4
   vite: 3.2.1_sass@1.55.0
@@ -525,11 +531,9 @@ packages:
     resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
       '@types/lodash': 4.14.186
-    dev: false
 
   /@types/lodash/4.14.186:
     resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
-    dev: false
 
   /@types/node/18.11.7:
     resolution: {integrity: sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==}
@@ -1834,6 +1838,10 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: true
+
+  /path-to-regexp/6.2.1:
+    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
     dev: true
 
   /picocolors/1.0.0:

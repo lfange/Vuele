@@ -14,6 +14,7 @@
     "core-js": "^3.26.0",
     "element-plus": "^2.2.19",
     "js-cookie": "^3.0.1",
+    "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^2.3.0",
@@ -22,6 +23,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.7",
     "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^3.2.0",
@@ -30,6 +32,7 @@
     "classnames": "^2.3.2",
     "eslint": "^8.26.0",
     "eslint-plugin-vue": "^9.6.0",
+    "path-to-regexp": "^6.2.1",
     "sass": "^1.55.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.0",

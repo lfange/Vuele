@@ -18,12 +18,16 @@ const SideBar = defineComponent({
     const appStore = useappStore()
 
     const { routers } = storeToRefs(userStore)
+    const { sidebar } = storeToRefs(appStore)
 
     console.log('routers routers',  routers)
     console.log('onMounted', appStore)
 
     const isCollapse =  computed(() => appStore.sidebar.opened)
-
+    
+    console.log('isCollapse', isCollapse)
+    console.log('sidebar', sidebar)
+    
     const go = () => {
         Router.push({ name: '/' })
     }

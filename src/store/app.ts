@@ -10,11 +10,23 @@ export const useappStore = defineStore('app', () => {
     }
   })
       
-  // 也可以这样定义
-  const increment = () => {
+  // toggle sidebar
+  const ToggleSicebar = () => {
     state.sidebar.opened = !state.sidebar.opened
+    Cookies.set('sidebarStatus', +state.sidebar.opened)
+    console.log('TOGGLE_SIDEBAR', state.sidebar.opened, state.sidebar.opened, )
   }
+
+  const CloseSideBar = (withoutAnimation: boolean) => {
+    console.log('CloseSideBar', state.sidebar.opened, state.sidebar.opened, )
+    Cookies.set('sidebarStatus', 1)
+    state.sidebar.opened = false
+    state.sidebar.withoutAnimation = withoutAnimation
+  }
+
   return {
-    ...toRefs(state)
+    ...toRefs(state),
+    ToggleSicebar,
+    CloseSideBar,
   }
 })
