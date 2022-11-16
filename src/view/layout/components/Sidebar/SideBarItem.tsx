@@ -27,7 +27,6 @@ const SiderBarItem = defineComponent({
       onlyOneChild: {}
     })
 
-
     const hasOneShowingChild = (children = [], parent) => {
       if (!children) {
         children = []
@@ -41,18 +40,15 @@ const SiderBarItem = defineComponent({
           return true
         }
       })
-
       // When there is only one child router, the child router is displayed by default
       if (showingChildren.length === 1) {
         return true
       }
-
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
         this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
         return true
       }
-
       return false
     }
     const resolvePath = (routePath) => {
@@ -62,7 +58,7 @@ const SiderBarItem = defineComponent({
       return path.resolve(this.basePath, routePath)
     }
     return () => (
-      <div class="menu-wrapper">
+      <div class="menu-wrapper" style="fontSize: 14px">
         title = {props.title}
         <Link title={props.title} />
       </div>

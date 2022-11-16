@@ -14,7 +14,7 @@ export const useNavTabsStore = defineStore('navTabs', () => {
     tabsView: [],
     tabFullScreen: false,
     // 从后台加载到的菜单路由列表
-    tabsViewRoutes: [],
+    menuRoutes: [],
   })
       
   function addTab(route: RouteLocationNormalized) {
@@ -30,17 +30,16 @@ export const useNavTabsStore = defineStore('navTabs', () => {
         route.meta.title = route.meta.title.indexOf('pagesTitle.') === -1 ? route.meta.title : i18n.global.t(route.meta.title)
     }
     state.tabsView.push(route)
-}
+  }
 
-function closeTab(route: RouteLocationNormalized) {
-    state.tabsView.map((v: RouteLocationNormalized, k: number) => {
-        if (v.path == route.path) {
-            state.tabsView.splice(k, 1)
-            return
-        }
-    })
-}
-
+  function closeTab(route: RouteLocationNormalized) {
+      state.tabsView.map((v: RouteLocationNormalized, k: number) => {
+          if (v.path == route.path) {
+              state.tabsView.splice(k, 1)
+              return
+          }
+      })
+  }
 
   return {
     ...toRefs(state),

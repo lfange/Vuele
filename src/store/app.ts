@@ -4,6 +4,8 @@ import Cookies from 'js-cookie'
 
 export const useappStore = defineStore('app', () => {
   const state = reactive({
+    device: 'mobile',
+    falgs: 'falgs',
     sidebar: {
       opened: !+Cookies.get('sidebarStatus'),
       withoutAnimation: false
@@ -23,7 +25,7 @@ export const useappStore = defineStore('app', () => {
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   }
-
+  
   return {
     ...toRefs(state),
     ToggleSicebar,

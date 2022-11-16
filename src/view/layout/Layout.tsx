@@ -2,7 +2,7 @@ import { defineComponent, onMounted, reactive } from 'vue'
 import classname from 'classnames'
 // import Navbar from './components/Navbar';
 import { storeToRefs } from 'pinia'
-import AppMain from './components/AppMain.vue'
+import AppMain from './components/AppMain.tsx'
 import Sidebar from './components/Sidebar/index.tsx'
 import Navbar from './components/Navbar.tsx'
 // import { Navbar, Sidebar, AppMain, TagsView } from './components';
@@ -20,10 +20,10 @@ const Layout = defineComponent({
     })
 
     const appStore = useappStore()
-    const { CloseSideBar } = appStore
-    const { sidebar } = storeToRefs(appStore)
+    const { sidebar, falgs } = storeToRefs(appStore)
+    const { CloseSideBar, device } = appStore
 
-    console.log('sidebarsidebarsidebar', sidebar, sidebar.value.opened)
+    console.log('sidebarsidebarsidebar', falgs)
     const handleClickOutside = () => {
       // this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
       CloseSideBar(false)
@@ -31,17 +31,32 @@ const Layout = defineComponent({
     }
     const classObj = () => {}
 
-    const DrawBack = () => St.device==='mobile' && sidebar.value.opened && <div class="drawer-bg" onclick={handleClickOutside} />
+    const DrawBack = () => St.device ==='mobile' && sidebar.value.opened && <div class="drawer-bg" onclick={handleClickOutside} />
 
+    const changes = () => {
+      console.log('device')
+      appStore.$patch({
+        device: 'webpackks',
+        falgs: 'change falgs'
+      })
+    }
+    
     // classObj,
     return () => (
       <div className={classname('app-wrapper')}>
         { DrawBack() }
         <Sidebar class="sidebar-container" />
         <div class="main-container">
-          <Navbar />
+          <el-button type="primary" onclick={changes}>Primary</el-button>
+          opened: { ~sidebar.value.opened }
+          <div>div:\ { appStore.falgs } </div>
+          <div>:\falgs { falgs.value } </div>
+          <p>device: {device} </p>
+          <div>CloseSideBar{ CloseSideBar }</div>
+          St: { St.device }
+          {/* <Navbar /> */}
           {/* <tags-view /> */}
-          {/* <AppMain /> */}
+          <AppMain />
         </div>
       </div>
     )
@@ -50,7 +65,6 @@ const Layout = defineComponent({
 
 export default Layout
 
-// import { Navbar, Sidebar, AppMain, TagsView } from './components'
 // import ResizeMixin from './mixin/ResizeHandler'
 
 // export default {
