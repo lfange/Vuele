@@ -7,6 +7,7 @@ interface FormIn {
 }
 
 const index = defineComponent({
+  name: 'dball',
   setup() {
     const state = reactive({
       tableData: [],

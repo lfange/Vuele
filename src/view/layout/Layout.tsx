@@ -1,16 +1,19 @@
-import { defineComponent, onMounted, reactive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import classname from 'classnames'
 // import Navbar from './components/Navbar';
 import { storeToRefs } from 'pinia'
 import AppMain from './components/AppMain.tsx'
-import Sidebar from './components/Sidebar/index.tsx'
+import Sidebar from './components/Sidebar/Sidebar.tsx'
 import Navbar from './components/Navbar.tsx'
+// import TagsView from './components/TagsView/index.vue'
 // import { Navbar, Sidebar, AppMain, TagsView } from './components';
 import './layout.scss'
 import { useappStore } from '@/store/app.ts'
+// import ResizeMixin from './mixin/ResizeHandler'
 
 const Layout = defineComponent({
   name: 'Layout',
+//   mixins: [ResizeMixin],
   setup() {
     const St = reactive({
       device: 'mobile',
@@ -20,8 +23,8 @@ const Layout = defineComponent({
     })
 
     const appStore = useappStore()
-    const { sidebar, falgs } = storeToRefs(appStore)
-    const { CloseSideBar, device } = appStore
+    const { opened, falgs, device, withoutAnimation } = storeToRefs(appStore)
+    const { CloseSideBar } = appStore
 
     console.log('sidebarsidebarsidebar', falgs)
     const handleClickOutside = () => {
@@ -29,9 +32,17 @@ const Layout = defineComponent({
       CloseSideBar(false)
       console.log('handleClickOutside', sidebar)
     }
-    const classObj = () => {}
 
-    const DrawBack = () => St.device ==='mobile' && sidebar.value.opened && <div class="drawer-bg" onclick={handleClickOutside} />
+    const wrapStyle = () => {
+      return {
+        hideSidebar: opened.value,
+        openSidebar: opened.value,
+        withoutAnimation: withoutAnimation.value,
+        mobile: device.value === 'mobile'
+      }
+    }
+
+    const DrawBack = () => St.device ==='mobile' && opened.value && <div class="drawer-bg" onclick={handleClickOutside} />
 
     const changes = () => {
       console.log('device')
@@ -43,16 +54,15 @@ const Layout = defineComponent({
     
     // classObj,
     return () => (
-      <div className={classname('app-wrapper')}>
+      <div className={classname(wrapStyle(),'app-wrapper')}>
         { DrawBack() }
         <Sidebar class="sidebar-container" />
         <div class="main-container">
           <el-button type="primary" onclick={changes}>Primary</el-button>
-          opened: { ~sidebar.value.opened }
+          opened: { ~opened.value }
           <div>div:\ { appStore.falgs } </div>
           <div>:\falgs { falgs.value } </div>
-          <p>device: {device} </p>
-          <div>CloseSideBar{ CloseSideBar }</div>
+          <p>device: {device.value} </p>
           St: { St.device }
           {/* <Navbar /> */}
           {/* <tags-view /> */}
@@ -70,19 +80,10 @@ export default Layout
 // export default {
 //   name: 'Layout',
 //   components: {
-//     Navbar,
-//     Sidebar,
-//     AppMain,
 //     TagsView
 //   },
 //   mixins: [ResizeMixin],
 //   computed: {
-//     sidebar() {
-//       return this.$store.state.app.sidebar
-//     },
-//     device() {
-//       return this.$store.state.app.device
-//     },
 //     classObj() {
 //       return {
 //         hideSidebar: !this.sidebar.opened,

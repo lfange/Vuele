@@ -24,7 +24,7 @@ const Navbar = defineComponent({
 
     return () => (
       <div class="navbar">
-        "@types/lodash-es { sidebar.opened }
+        "@types/lodash-es { sidebar.value.opened }
         <Hamburger toggle-click={toggleSideBar} is-active={sidebar.value.opened} class="hamburger-container"/>
         <Breadcrumb />
         <el-dropdown class="avatar-container" trigger="click">

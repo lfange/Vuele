@@ -10,6 +10,10 @@ import { NavTabs } from '@/store/interface/index.ts'
 export const useNavTabsStore = defineStore('navTabs', () => {
 
   const state: NavTabs = reactive({
+    // 激活tab的index
+    activeIndex: 0,
+    // 激活的tab
+    activeRoute: null,
     // tab列表
     tabsView: [],
     tabFullScreen: false,
@@ -41,9 +45,34 @@ export const useNavTabsStore = defineStore('navTabs', () => {
       })
   }
 
+  const setMenuRoutes = (data: RouteRecordRaw[]): void => {
+    if (!data) {
+      state.menuRoutes = encodeRoutesURI(Routes)
+      return
+    }
+    state.menuRoutes = encodeRoutesURI(data)
+  }
+
   return {
     ...toRefs(state),
     addTab,
-    closeTab
+    closeTab,
+    setMenuRoutes
   }
 })
+
+/**
+ * 对iframe的url进行编码
+ */
+ function encodeRoutesURI(data: RouteRecordRaw[]) {
+   data.forEach((item) => {
+      if (item.meta?.type == 'iframe') {
+          item.path = '/admin/iframe/' + encodeURIComponent(item.path)
+      }
+
+      if (item.children && item.children.length) {
+          item.children = encodeRoutesURI(item.children)
+      }
+  })
+  return data
+}

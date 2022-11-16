@@ -1,8 +1,12 @@
-import { defineComponent, toRefs, reactive } from 'vue';
-import Link from './Link.tsx';
+import { defineComponent, toRefs, reactive } from 'vue'
+import { isExternal } from '@/utils/validate.ts'
+import Link from './Link.vue'
+import TextItem from './TextItem.tsx'
+import path from 'path'
+import MenuTitle from './menuTitle.vue'
 
 const SiderBarItem = defineComponent({
-  name: 'SiderBarItem',
+  name: 'SiderBarItems',
   props: {
     title: String,
     // route object
@@ -20,47 +24,67 @@ const SiderBarItem = defineComponent({
     }
   },
   setup(props) {
-    console.log('props', props)
     const { item } = toRefs(props)
     // !item.hidden
     const St = reactive({
       onlyOneChild: {}
     })
 
+    console.log('!itemitem.item', item)
     const hasOneShowingChild = (children = [], parent) => {
+      console.log('!hasOneShowingChild.isNest', children)
       if (!children) {
         children = []
       }
-      const showingChildren = children.filter(item => {
+      const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false
         } else {
           // Temp set(will be used if only has one showing child)
-          this.onlyOneChild = item
+          St.onlyOneChild = item
           return true
         }
       })
       // When there is only one child router, the child router is displayed by default
-      if (showingChildren.length === 1) {
-        return true
-      }
+      if (showingChildren.length === 1) return true
+
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
-        this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+        St.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
       return false
     }
     const resolvePath = (routePath) => {
+      console.log('resolvePath', routePath)
+      if (!routePath) return 'routePath null'
       if (isExternal(routePath)) {
         return routePath
       }
-      return path.resolve(this.basePath, routePath)
+      return path.resolve(props.basePath, routePath)
     }
+
     return () => (
-      <div class="menu-wrapper" style="fontSize: 14px">
-        title = {props.title}
-        <Link title={props.title} />
+      <div class="menu-wrapper" style="font-size: 14px;color: #000">
+        {hasOneShowingChild(props.item.children, props.item) &&
+          (!St.onlyOneChild.children || St.onlyOneChild.noShowingChildren) ? (
+            <Link to={resolvePath(St.onlyOneChild.path)}>
+              <el-menu-item
+                index={resolvePath(St.onlyOneChild.path)}
+                class={!props.isNest ? 'submenu-title-noDropdown' : ''}
+              >
+                <TextItem
+                  meta={Object.assign({},
+                    props.item.meta,
+                    St.onlyOneChild.meta
+                  )}
+                />
+              </el-menu-item>
+            </Link>
+          ) : <MenuTitle item={props.item} />
+        }
+        {/* //   title = {props.title}
+        // <Link title={props.title} /> */}
       </div>
     )
   }

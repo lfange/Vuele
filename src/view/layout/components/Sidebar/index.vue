@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
-    {{ routers }} {{ routers.length }}
+    : {{ navTabs.menuRoutes.length }}
     <el-menu
       :default-active="$route.path"
       :collapse="isCollapse"
@@ -11,8 +11,8 @@
       mode="vertical"
     >
       <div @click="Routeset">state.routers</div>
-      <sidebar-item v-for="route in routers" :key="route.path" :item="route" :base-path="route.path"/>
-      <SideBarItem  v-for="route in routers" :key="route.path" :item="route" :base-path="route.path" :title="'SideBarItem'" />
+      <!-- <sidebar-item v-for="route in routers" :key="route.path" :item="route" :base-path="route.path"/> -->
+      <SideBarItem  v-for="route in navTabs.menuRoutes" :key="route.path" :item="route" :base-path="route.path" :title="'SideBarItem'" />
     </el-menu>
   </el-scrollbar>
 </template>
@@ -22,21 +22,22 @@
 import variables from '@/styles/variables.scss'
 import { storeToRefs } from 'pinia'
 import { useappStore } from '@/store/app'
-import { useuserStore } from '@/store/user.ts'
-import SideBarItem from './SideBarItem.tsx'
+import { useNavTabsStore } from '@/store/navTabs.ts'
+import SideBarItem from './SidebarItem.vue'
 import { computed } from 'vue';
 
 const appStore = useappStore()
 
-const userStore = useuserStore()
+const navTabs = useNavTabsStore()
 
-const isCollapse = computed(() => appStore.sidebar.opened)
+const isCollapse = computed(() => appStore.opened)
 
-const { routers } = storeToRefs(userStore)
+const { menuRoutes } = storeToRefs(navTabs)
 
+console.log('Routeset', menuRoutes)
 const Routeset = () => {
-  console.log('Routeset', routers)
-  userStore.GetRoutes()
+  console.log('Routeset', menuRoutes)
+  // userStore.GetRoutes()
 }
 
 </script>
