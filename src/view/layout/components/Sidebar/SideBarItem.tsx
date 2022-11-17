@@ -3,7 +3,6 @@ import { isExternal } from '@/utils/validate.ts'
 import Link from './Link.vue'
 import TextItem from './TextItem.tsx'
 import path from 'path'
-import MenuTitle from './menuTitle.vue'
 import { Location } from '@element-plus/icons-vue'
 
 const SideBarItem = defineComponent({
@@ -32,7 +31,7 @@ const SideBarItem = defineComponent({
       onlyOneChild: {}
     })
 
-    const hasOneShowingChild = (children = [], parent) => {
+    const hasOneShowingChild = (children = [], parent: any) => {
       
       children = children || []
       const showingChildren = children.filter((child) => {
@@ -71,11 +70,11 @@ const SideBarItem = defineComponent({
 
     console.log('>>> item', props.item, hasOneShowingChild(props.item.children, props.item))
 
-    const OnlyText = () => {
+    const LinkItem = () => {
       return (
         <Link to={resolvePath(St.onlyOneChild.path)}>
           <el-menu-item index={resolvePath(St.onlyOneChild.path)} class={!props.isNest ? 'submenu-title-noDropdown':''}>
-            no: <TextItem meta={Object.assign({}, props.item, St.onlyOneChild.meta )} />
+            <TextItem meta={Object.assign({}, props.item, St.onlyOneChild.meta )} />
           </el-menu-item>
         </Link>
       )
@@ -118,10 +117,10 @@ const SideBarItem = defineComponent({
       <div class="menu-wrapper" style="font-size: 14px;color: #000">
         {/* {
           hasOneShowingChild(props.item.children, props.item) && (!St.onlyOneChild.children||St.onlyOneChild.noShowingChildren)&&!props.item.alwaysShow 
-          ? <OnlyText />  :
+          ? <LinkItem />  :
            <SubMenu />
         } */}
-        { props.item.children && props.item.children.length ? <SubMenu /> : <OnlyText /> }
+        { props.item.children && props.item.children.length ? <SubMenu /> : <LinkItem /> }
       </div>
     )
   }

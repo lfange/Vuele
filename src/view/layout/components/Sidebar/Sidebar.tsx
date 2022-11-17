@@ -6,7 +6,6 @@ import { useNavTabsStore } from '@/store/navTabs.ts'
 import { useappStore } from '@/store/app.ts'
 import variables from '@/styles/variables.scss'
 import SideBarItem from './SideBarItem.tsx'
-import MenuTitle from './menuTitle.vue'
 import { Location, } from '@element-plus/icons-vue'
 
 
@@ -55,7 +54,6 @@ const SideBar = defineComponent({
           onSelect={handleSelect}
         >
           <el-menu-item index="1">Processing Center</el-menu-item>
-            <MenuTitle />
             <el-sub-menu index='/cs/sys' v-slots={{
                 default: () => <span>'header'</span>,
                 title: () => (

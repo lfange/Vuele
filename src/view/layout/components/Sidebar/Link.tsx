@@ -3,7 +3,11 @@ import { defineComponent } from 'vue';
 const Link = defineComponent({
   name: 'Link',
   props: {
-    title: String
+    title: String,
+    to: {
+      type: String,
+      required: true
+    }
   },
   setup(props) {
     console.log('props', props)
