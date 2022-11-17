@@ -1,32 +1,27 @@
 
-<script setup lang="ts">
-  import { isExternal } from '@/utils/validate.ts'
-  import { Location, } from '@element-plus/icons-vue'
-  // import TextItem from './TextItem.tsx'
-  import { toRefs } from 'vue';
-  import path from 'path';
-  
-  const props = defineProps({
-    foo: String,
-    item: Object
-  })
-  
-  console.log('item', props.item)
+<script setup lang="ts" name="menuTitle">
+import { isExternal } from '@/utils/validate.ts'
+import { Location, } from '@element-plus/icons-vue'
+import SideBarItem from './SideBarItem.tsx'
+import { toRefs } from 'vue';
+import path from 'path';
 
-  const { item } = toRefs(props) 
+const props = defineProps({
+  foo: String,
+  item: Object
+})
 
-  const resolvePath = (routePath) => {
-    if (!routePath) return 'routePath null'
-    if (isExternal(routePath)) {
-      return routePath
-    }
-    return path.resolve(props.basePath, routePath)
+console.log('menuTitle item', props.item)
+
+const { item } = toRefs(props)
+
+const resolvePath = (routePath) => {
+  if (!routePath) return 'routePath null'
+  if (isExternal(routePath)) {
+    return routePath
   }
-</script>
-<script lang="ts">
-  export default {
-    name: 'menuTitle'
-  }
+  return path.resolve(props.basePath, routePath)
+}
 </script>
 
 <template>
@@ -43,17 +38,14 @@
       <el-menu-item index="1-4-1">item one</el-menu-item>
     </el-sub-menu>
   </el-sub-menu> -->
-  <el-sub-menu ref="subMenu" :index="resolvePath(props.item?.path)" popper-append-to-body>
+  <el-sub-menu ref="subMenu" :index="props.item?.path" popper-append-to-body>
     <template #title>
-      <el-icon><location /></el-icon>
-      <span>{{props.item?.title}}</span>
+      <el-icon>
+        <location />
+      </el-icon>
+      <span>{{ props.item?.title }}</span>
     </template>
-    <sidebar-item
-      v-for="child in item?.children"
-      :is-nest="true"
-      :item="child"
-      :key="child.path"
-      :base-path="resolvePath(child.path)"
-      class="nest-menu" />
+    <SideBarItem v-for="child in item?.children" :is-nest="true" :item="child" :key="child.path"
+      :base-path="resolvePath(child.path)" class="nest-menu" />
   </el-sub-menu>
 </template>
