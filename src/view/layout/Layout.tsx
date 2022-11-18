@@ -78,7 +78,6 @@ export default Layout
 // import ResizeMixin from './mixin/ResizeHandler'
 
 // export default {
-//   name: 'Layout',
 //   components: {
 //     TagsView
 //   },

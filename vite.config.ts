@@ -52,6 +52,14 @@ export default defineConfig(({ command, mode }) => {
         }
       }
     },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader', 'sass-loader']
+        }
+      ]
+    },
     plugins: [
       vue(), 
       vueJsx({})

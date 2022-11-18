@@ -2,7 +2,7 @@
   {
     "id": null,
     "parentId": "-1",
-    "path": "/menu",
+    "path": "menu",
     "component": "layout/Layout",
     "redirect": null,
     "name": null,
@@ -14,7 +14,7 @@
     "children": [{
       "id": "1",
       "parentId": "-1",
-      "path": "upms/menu/index",
+      "path": "two",
       "component": "upms/menu/index",
       "redirect": null,
       "name": "菜单管理",
@@ -23,7 +23,22 @@
       "orders": 1,
       "checked": null,
       "permissions": null,
-      "children": null
+      "children": [
+        {
+          "id": "2",
+          "parentId": "-1",
+          "path": "three",
+          "component": "upms/dependence",
+          "redirect": null,
+          "name": "技术栈",
+          "title": "技术栈",
+          "icon": "jishu",
+          "orders": 4,
+          "checked": null,
+          "permissions": null,
+          "children": null
+        }
+      ]
     }]
   },
   {
@@ -34,6 +49,34 @@
     "redirect": null,
     "name": "角色管理",
     "title": "角色管理",
+    "icon": "role",
+    "orders": 2,
+    "checked": null,
+    "permissions": null,
+    "children": ""
+  },
+  {
+    "id": "6",
+    "parentId": "-1",
+    "path": "http://baidu.com",
+    "component": "index",
+    "redirect": null,
+    "name": "跳转百度",
+    "title": "baidu",
+    "icon": "role",
+    "orders": 2,
+    "checked": null,
+    "permissions": null,
+    "children": ""
+  },
+  {
+    "id": "7",
+    "parentId": "-1",
+    "path": "/dball",
+    "component": "ind",
+    "redirect": null,
+    "name": "dball",
+    "title": "dball",
     "icon": "role",
     "orders": 2,
     "checked": null,

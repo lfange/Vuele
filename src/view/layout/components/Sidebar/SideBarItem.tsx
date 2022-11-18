@@ -1,7 +1,6 @@
 import { defineComponent, toRefs, reactive } from 'vue'
 import { isExternal } from '@/utils/validate.ts'
-import Link from './Link.vue'
-import TextItem from './TextItem.tsx'
+import Link from './Link.tsx'
 import path from 'path'
 import { Location } from '@element-plus/icons-vue'
 
@@ -24,9 +23,6 @@ const SideBarItem = defineComponent({
     }
   },
   setup(props) {
-
-    const { item } = toRefs(props)
-
     const St = reactive({
       onlyOneChild: {}
     })
@@ -56,7 +52,6 @@ const SideBarItem = defineComponent({
     }
 
     const resolvePath = (routePath: any): string => {
-      console.log('basePath', props.basePath)
       try {
         if (isExternal(routePath)) {
           return routePath
@@ -74,52 +69,37 @@ const SideBarItem = defineComponent({
       return (
         <Link to={resolvePath(St.onlyOneChild.path)}>
           <el-menu-item index={resolvePath(St.onlyOneChild.path)} class={!props.isNest ? 'submenu-title-noDropdown':''}>
-            <TextItem meta={Object.assign({}, props.item, St.onlyOneChild.meta )} />
+            <TextLink />
           </el-menu-item>
         </Link>
       )
     }
 
-    const SubMenu = () => {
+    const TextLink = () => {
       return (
-        // <el-sub-menu index='/cs/sys' v-slots={{
-        //     default: () => <span>'header'</span>,
-        //     title: () => (
-        //       <div>
-        //         <el-icon><Location /></el-icon>
-        //         <span>系统管理</span>
-        //       </div>)
-        //   }} />
-        <el-sub-menu ref="subMenu" index={resolvePath(props.item.path)} popper-append-to-body v-slots={{
-          default: () => <SubDefault />,
-          title: () => <SubTitle />
-        }} />
-      )
-    }
-
-    const SubTitle = () => {
-      return (
-        <div>
+        <>
           <el-icon><Location /></el-icon>
           <span>{props.item.title}</span>
-        </div>
+        </>
       )
     }
 
-    const SubDefault = () => {
-      console.log('SubDefault', props.item) 
+    const SubMenu = () => {
+      const SubDefault = () => {
+        return (
+          props.item.children.map((child: any) => <SideBarItem is-nest={true} key={child.path} item={child} base-path={resolvePath(child.path)} class="nest-menu" /> )
+        )
+      }
       return (
-        props.item.children.map((child: any) => <SideBarItem is-nest={true} key={child.path} item={child} base-path={resolvePath(child.path)} class="nest-menu" /> )
+        <el-sub-menu ref="subMenu" index={resolvePath(props.item.path)} popper-append-to-body v-slots={{
+          default: () => <SubDefault />,
+          title: () => <TextLink />
+        }} />
       )
     }
 
     return () => (
       <div class="menu-wrapper" style="font-size: 14px;color: #000">
-        {/* {
-          hasOneShowingChild(props.item.children, props.item) && (!St.onlyOneChild.children||St.onlyOneChild.noShowingChildren)&&!props.item.alwaysShow 
-          ? <LinkItem />  :
-           <SubMenu />
-        } */}
         { props.item.children && props.item.children.length ? <SubMenu /> : <LinkItem /> }
       </div>
     )

@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 
 import { useNavTabsStore } from '@/store/navTabs.ts'
 import { useappStore } from '@/store/app.ts'
-import variables from '@/styles/variables.scss'
+import variables from '@/styles/variables module.scss'
 import SideBarItem from './SideBarItem.tsx'
 import { Location, } from '@element-plus/icons-vue'
 
@@ -22,7 +22,6 @@ const SideBar = defineComponent({
 
     const isCollapse =  computed(() => appStore.opened)
     
-    
     const go = () => {
         Router.push({ name: '/' })
     }
@@ -33,8 +32,11 @@ const SideBar = defineComponent({
 
     setMenuRoutes()
 
+    console.log('variables', variables, variables.menuText)
+    const index = '/index'
     return () => (
       <el-scrollbar wrap-class="scrollbar-wrapper">
+        <router-link to={index}>Home</router-link>
         <el-menu
           default-active={Route.path}
           collapse={appStore.open}
@@ -46,7 +48,6 @@ const SideBar = defineComponent({
         >
           { menuRoutes.value.map((route: any) => <SideBarItem key={route.path} item={route} base-path={route.path}/>) }
         </el-menu>
-        
         {/* <el-menu
           default-active="1"
           class="el-menu-demo"
