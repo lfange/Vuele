@@ -38,7 +38,6 @@ const SideBarItem = defineComponent({
           return true
         }
       })
-      console.log('showingChildren', showingChildren)
       // When there is only one child router, the child router is displayed by default
       if (showingChildren.length === 1) return true
 
@@ -49,6 +48,7 @@ const SideBarItem = defineComponent({
       }
       return false
     }
+    hasOneShowingChild(props.item.children, props.item)
 
     const resolvePath = (routePath: any): string => {
       try {
@@ -57,20 +57,21 @@ const SideBarItem = defineComponent({
         }
         return path.resolve(props.basePath, routePath)
       } catch (e) {
+        console.warn(`resolve menu has some problem:`, e)
         // Cannot access "path.resolve" in client code.
         return `${props.basePath}/${routePath}`
       }
     }
 
-    console.log('>>> item', props.item, hasOneShowingChild(props.item.children, props.item))
-
     // Link header item options
     const LinkItem = () => {
       return (
         <Link to={resolvePath(St.onlyOneChild.path)}>
-          <el-menu-item index={resolvePath(St.onlyOneChild.path)} class={!props.isNest ? 'submenu-title-noDropdown':''}>
-            <TextLink />
-          </el-menu-item>
+          <el-menu-item index={resolvePath(St.onlyOneChild.path)} class={!props.isNest ? 'submenu-title-noDropdown':''}
+            v-slots={{
+              default: () => <TextLink />
+            }}
+            />
         </Link>
       )
     }
@@ -93,7 +94,7 @@ const SideBarItem = defineComponent({
         )
       }
       return (
-        <el-sub-menu ref="subMenu" index={resolvePath(props.item.path)} popper-append-to-body v-slots={{
+        <el-sub-menu ref="subMenu" index={resolvePath(props.item.path)} popper-append-to-body class="nest-menu" v-slots={{
           default: () => <SubDefault />,
           title: () => <TextLink />
         }} />
@@ -101,7 +102,7 @@ const SideBarItem = defineComponent({
     }
 
     return () => (
-      <div class="menu-wrapper" style="font-size: 14px;color: #000">
+      <div class="menu-wrapper">
         { props.item.children && props.item.children.length ? <SubMenu /> : <LinkItem /> }
       </div>
     )

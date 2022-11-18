@@ -1,31 +1,36 @@
 import { defineComponent } from 'vue';
-import { storeToRefs } from 'pinia'
 import { useappStore } from '@/store/app.ts'
-import Hamburger from '@/components/Hamburger/index.tsx'
 import Breadcrumb from '@/components/Breadcrumb/index.tsx'
 import { ArrowDown } from '@element-plus/icons-vue'
 
 const Navbar = defineComponent({
   name: 'Navbar',
   props: {
-    title: String
   },
-  setup(props) {
-    console.log('props', props)
-
+  setup() {
     const appStore = useappStore()
-    const { CloseSideBar } = appStore
-    const { sidebar } = storeToRefs(appStore)
+    const { ToggleSicebar } = appStore
 
     
-    const toggleSideBar = () => {
-      CloseSideBar
-    }
-
+    // Toggle sidebar Svg
+    const Hamburger = () =>  (
+      <div class="hamburger-container">
+        <svg
+          class={[ appStore.opened ? 'is-active': '', 'hamburger']}
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          width="64"
+          height="64"
+          onclick={ ToggleSicebar }
+          >
+          <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 0 0 0-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z" />
+        </svg>
+      </div>
+    )
+    
     return () => (
       <div class="navbar">
-        "@types/lodash-es { sidebar.value.opened }
-        <Hamburger toggle-click={toggleSideBar} is-active={sidebar.value.opened} class="hamburger-container"/>
+        <Hamburger  />
         <Breadcrumb />
         <el-dropdown class="avatar-container" trigger="click">
           <div class="avatar-wrapper el-dropdown-link">

@@ -11,7 +11,6 @@ const Link = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit, expose }) {
-    console.log('props', props)
     // `props` 包含 `to` 和任何其他可以传递给 <router-link> 的 prop
     const { navigate, href, route, isActive, isExactActive } = useLink(props)
     

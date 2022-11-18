@@ -16,7 +16,6 @@ const Layout = defineComponent({
 //   mixins: [ResizeMixin],
   setup() {
     const St = reactive({
-      device: 'mobile',
       sidebar: {
         opened: true
       }
@@ -33,18 +32,18 @@ const Layout = defineComponent({
 
     const wrapStyle = () => {
       return {
-        hideSidebar: opened.value,
+        hideSidebar: !opened.value,
         openSidebar: opened.value,
         withoutAnimation: withoutAnimation.value,
         mobile: device.value === 'mobile'
       }
     }
 
-    const DrawBack = () => St.device ==='mobile' && opened.value && <div class="drawer-bg" onclick={handleClickOutside} />
+    const DrawBack = () => device.value ==='mobile' && opened.value && <div class="drawer-bg" onclick={handleClickOutside} />
 
     const changes = () => {
       appStore.$patch({
-        device: 'webpackks',
+        device: 'mobile',
         falgs: 'change falgs'
       })
     }
@@ -55,13 +54,13 @@ const Layout = defineComponent({
         { DrawBack() }
         <Sidebar class="sidebar-container" />
         <div class="main-container">
+          <Navbar />
           <el-button type="primary" onclick={changes}>Primary</el-button>
-          opened: { ~opened.value }
-          <div>div:\ { appStore.falgs } </div>
-          <div>:\falgs { falgs.value } </div>
-          <p>device: {device.value} </p>
-          St: { St.device }
-          {/* <Navbar /> */}
+            opened: { opened.value ? '111' : '222' }
+            <div>div:\ { appStore.falgs } </div>
+            <div>:\falgs { falgs.value } </div>
+            <p>device: {device.value} </p>
+            St: { St.sidebar.opened }
           {/* <tags-view /> */}
           <AppMain />
         </div>

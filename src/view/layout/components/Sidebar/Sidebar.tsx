@@ -19,8 +19,6 @@ const SideBar = defineComponent({
 
     setMenuRoutes()
 
-    console.log('vari', variables)
-
     return () => (
       <el-scrollbar wrap-class="scrollbar-wrapper">
         <el-menu
@@ -29,7 +27,7 @@ const SideBar = defineComponent({
           background-color={ variables.menuBg}
           text-color={variables.menuText}
           active-text-color={variables.menuActiveText}
-          collapse-transition="false"
+          class="el-menu-vertical-demo"
           mode="vertical"
         >
           { menuRoutes.value.map((route: any) => <SideBarItem key={route.path} item={route} base-path={route.path}/>) }
