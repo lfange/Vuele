@@ -1,11 +1,10 @@
 import { defineComponent } from 'vue'
-import { RouterLink, useLink, RouterLinkProps } from 'vue-router'
-import { isExternal } from '@/utils/validate'
+import { useLink } from 'vue-router'
+import { isExternal } from '@/utils/validate.ts'
 
 const Link = defineComponent({
   name: 'Link',
   props: {
-    ...RouterLink.props,
     title: String,
     to: {
       type: String,
