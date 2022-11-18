@@ -46,14 +46,15 @@ export default defineConfig(({ command, mode }) => {
     },
     css: {
       preprocessorOptions: {
-        less: {
+        scss: {
           // 支持内联 JavaScript
           javascriptEnabled: true
         },
-        scss: {
-
-              use: ['style-loader', 'css-loader', 'sass-loader']
-        }
+        // scss: {
+        //   // additionalData: `$injectedColor: orange;`
+        //   additionalData: '$variables ?= @import "./src/styles/variables.scss";',
+        //       // use: ['style-loader', 'css-loader', 'sass-loader']
+        // }
       }
     },
     module: {
