@@ -26,11 +26,9 @@ const Layout = defineComponent({
     const { opened, falgs, device, withoutAnimation } = storeToRefs(appStore)
     const { CloseSideBar } = appStore
 
-    console.log('sidebarsidebarsidebar', falgs)
     const handleClickOutside = () => {
       // this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
       CloseSideBar(false)
-      console.log('handleClickOutside', sidebar)
     }
 
     const wrapStyle = () => {
@@ -45,7 +43,6 @@ const Layout = defineComponent({
     const DrawBack = () => St.device ==='mobile' && opened.value && <div class="drawer-bg" onclick={handleClickOutside} />
 
     const changes = () => {
-      console.log('device')
       appStore.$patch({
         device: 'webpackks',
         falgs: 'change falgs'

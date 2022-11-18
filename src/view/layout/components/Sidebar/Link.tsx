@@ -5,7 +5,6 @@ import { isExternal } from '@/utils/validate.ts'
 const Link = defineComponent({
   name: 'Link',
   props: {
-    title: String,
     to: {
       type: String,
       required: true

@@ -6,10 +6,8 @@ import { useNavTabsStore } from '@/store/navTabs.ts'
 const AppMain = defineComponent({
   name: 'AppMain',
   props: {
-    title: String
   },
-  setup(props) {
-    console.log('props', props)
+  setup() {
 
     const Route = useRoute()
 

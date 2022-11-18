@@ -7,7 +7,6 @@ import { Location } from '@element-plus/icons-vue'
 const SideBarItem = defineComponent({
   name: 'SideBarItem',
   props: {
-    title: String,
     // route object
     item: {
       type: Object,
@@ -30,7 +29,7 @@ const SideBarItem = defineComponent({
     const hasOneShowingChild = (children = [], parent: any) => {
       
       children = children || []
-      const showingChildren = children.filter((child) => {
+      const showingChildren = children.filter((child: any) => {
         if (child.hidden) {
           return false
         } else {
@@ -65,6 +64,7 @@ const SideBarItem = defineComponent({
 
     console.log('>>> item', props.item, hasOneShowingChild(props.item.children, props.item))
 
+    // Link header item options
     const LinkItem = () => {
       return (
         <Link to={resolvePath(St.onlyOneChild.path)}>
@@ -75,6 +75,7 @@ const SideBarItem = defineComponent({
       )
     }
 
+
     const TextLink = () => {
       return (
         <>
@@ -84,6 +85,7 @@ const SideBarItem = defineComponent({
       )
     }
 
+    // parent has children
     const SubMenu = () => {
       const SubDefault = () => {
         return (

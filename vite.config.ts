@@ -49,6 +49,10 @@ export default defineConfig(({ command, mode }) => {
         less: {
           // 支持内联 JavaScript
           javascriptEnabled: true
+        },
+        scss: {
+
+              use: ['style-loader', 'css-loader', 'sass-loader']
         }
       }
     },
