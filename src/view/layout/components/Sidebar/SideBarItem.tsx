@@ -2,7 +2,7 @@ import { defineComponent, toRefs, reactive } from 'vue'
 import { isExternal } from '@/utils/validate.ts'
 import Link from './Link.tsx'
 import path from 'path'
-import { Location } from '@element-plus/icons-vue'
+import * as Icons from '@element-plus/icons-vue'
 
 const SideBarItem = defineComponent({
   name: 'SideBarItem',
@@ -59,38 +59,49 @@ const SideBarItem = defineComponent({
       } catch (e) {
         console.warn(`resolve menu has some problem:`, e)
         // Cannot access "path.resolve" in client code.
-        return `${props.basePath}/${routePath}`
+        return routePath ?  `${props.basePath}/${routePath}` : props.basePath
       }
     }
 
+    console.log('LinkItem', props)
     // Link header item options
     const LinkItem = () => {
       return (
         <Link to={resolvePath(St.onlyOneChild.path)}>
-          <el-menu-item index={resolvePath(St.onlyOneChild.path)} class={!props.isNest ? 'submenu-title-noDropdown':''}
+          <el-menu-item index={resolvePath(St.onlyOneChild.path)} 
             v-slots={{
-              default: () => <TextLink />
+              default: () => <IconLink />,
+              title: () => <span>{props.item.title}</span>
             }}
             />
         </Link>
       )
     }
 
-
-    const TextLink = () => {
-      return (
-        <>
-          <el-icon><Location /></el-icon>
-          <span>{props.item.title}</span>
-        </>
-      )
+    const IconLink = () =>{
+      const key = props.item.icon
+      const Icon = key && Icons[key]
+      if (key && !Icon) {
+        console.warn(`No Match found "${key}" Icon in Elementplus!, 
+          Menu ICONS are derived from Elementplus and use the hump nomenclature, Please Check Menu Icon options!!`)
+      }
+      return( props.item.icon && <el-icon><Icon /></el-icon>)
     }
 
     // parent has children
     const SubMenu = () => {
       const SubDefault = () => {
         return (
-          props.item.children.map((child: any) => <SideBarItem is-nest={true} key={child.path} item={child} base-path={resolvePath(child.path)} class="nest-menu" /> )
+          props.item.children.map((child: any) => 
+            <SideBarItem is-nest={true} key={child.path} item={child} base-path={resolvePath(child.path)} class="nest-menu" /> )
+        )
+      }
+      const TextLink = () => {
+        return (
+          <>
+            <IconLink />
+            <span>{props.item.title}</span>
+          </>
         )
       }
       return (
@@ -102,9 +113,9 @@ const SideBarItem = defineComponent({
     }
 
     return () => (
-      <div class="menu-wrapper">
+      <>
         { props.item.children && props.item.children.length ? <SubMenu /> : <LinkItem /> }
-      </div>
+      </>
     )
   }
 })

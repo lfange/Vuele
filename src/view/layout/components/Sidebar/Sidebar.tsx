@@ -1,5 +1,5 @@
-import { defineComponent, computed, reactive } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent } from 'vue';
+import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia'
 import { useNavTabsStore } from '@/store/navTabs.ts'
 import { useappStore } from '@/store/app.ts'
@@ -10,7 +10,6 @@ const SideBar = defineComponent({
   name: 'SideBar',
   setup() {
     const Route = useRoute()
-    const Router = useRouter()
 
     const navTabsStore = useNavTabsStore()
     const appStore = useappStore()
@@ -23,11 +22,10 @@ const SideBar = defineComponent({
       <el-scrollbar wrap-class="scrollbar-wrapper">
         <el-menu
           default-active={Route.path}
-          collapse={appStore.open}
+          collapse={!appStore.opened}
           background-color={ variables.menuBg}
           text-color={variables.menuText}
           active-text-color={variables.menuActiveText}
-          class="el-menu-vertical-demo"
           mode="vertical"
         >
           { menuRoutes.value.map((route: any) => <SideBarItem key={route.path} item={route} base-path={route.path}/>) }
