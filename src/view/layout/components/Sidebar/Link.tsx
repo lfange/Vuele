@@ -20,7 +20,7 @@ const Link = defineComponent({
       </a>
     )
     const VLink = () => (
-      <router-link to={props.to} {...attrs} v-slots={{ isActive, href, navigate }}>
+      <router-link to={props.to} {...attrs}>
         { slots.default?.() }
       </router-link>
     )

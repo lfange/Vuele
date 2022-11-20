@@ -1,7 +1,6 @@
 import { defineComponent, toRefs, reactive } from 'vue'
-import { isExternal } from '@/utils/validate.ts'
+// import { isExternal } from '@/utils/validate.ts'
 import Link from './Link.tsx'
-import path from 'path'
 import * as Icons from '@element-plus/icons-vue'
 
 const SideBarItem = defineComponent({
@@ -51,19 +50,18 @@ const SideBarItem = defineComponent({
     hasOneShowingChild(props.item.children, props.item)
 
     const resolvePath = (routePath: any): string => {
-      try {
-        if (isExternal(routePath)) {
-          return routePath
-        }
-        return path.resolve(props.basePath, routePath)
-      } catch (e) {
-        console.warn(`resolve menu has some problem:`, e)
-        // Cannot access "path.resolve" in client code.
+      // try {
+      //   if (isExternal(routePath)) {
+      //     return routePath
+      //   }
+      //   return path.resolve(props.basePath, routePath)
+      // } catch (e) {
+      //   console.warn(`resolve menu has some problem:`, e)
+      //   // Cannot access "path.resolve" in client code.
+      // }
         return routePath ?  `${props.basePath}/${routePath}` : props.basePath
-      }
     }
 
-    console.log('LinkItem', props)
     // Link header item options
     const LinkItem = () => {
       return (

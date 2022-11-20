@@ -31,24 +31,32 @@ const Navbar = defineComponent({
     return () => (
       <div class="navbar">
         <Hamburger  />
-        <Breadcrumb />
+        {/* <Breadcrumb /> */}
         <el-dropdown class="avatar-container" trigger="click">
-          <div class="avatar-wrapper el-dropdown-link">
-            <img src="https://tupian.qqw21.com/article/UploadPic/2020-3/202031522291979394.jpg" class="user-avatar" />
-            <el-icon class="el-icon--right">
-              <arrow-down />
-            </el-icon>
-          </div>
-            <el-dropdown-menu slot="dropdown" class="user-dropdown">
+          <span class="avatar-wrapper el-dropdown-link">
+            Dropdown List
+            {/* <img src="https://tupian.qqw21.com/article/UploadPic/2020-3/202031522291979394.jpg" class="user-avatar" /> */}
+            <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+          </span>
+          <el-dropdown-menu  v-slots={{
+              dropdown: () => <el-dropdown-item >Action 4</el-dropdown-item>
+            }} /> 
+            {/* <el-dropdown-menu slot="dropdown" class="user-dropdown" >
+            <el-dropdown-menu>
+            <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+            <el-dropdown-item :icon="CirclePlusFilled">
+              Action 2
+            </el-dropdown-item>
+            <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+            <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+            <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+          </el-dropdown-menu>
               <router-link class="inlineBlock" to="/">
                 <el-dropdown-item>
                   首页
                 </el-dropdown-item>
               </router-link>
-              <el-dropdown-item divided onclick="logout">
-                <span style="display:block;">注销</span>
-              </el-dropdown-item>
-            </el-dropdown-menu>
+            </el-dropdown-menu> */}
         </el-dropdown>
       </div>
     )

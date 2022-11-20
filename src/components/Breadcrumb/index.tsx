@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, TransitionGroup } from 'vue';
 import { useRoute, useRouter, RouteLocationNamedRaw } from 'vue-router';
 import './breadcrubm.scss'
 
@@ -57,14 +57,14 @@ const Breadcrumb = defineComponent({
 
     return () => (
       <el-breadcrumb class="app-breadcrumb" separator="/">
-        <transition-group name="breadcrumb">
+        <TransitionGroup name="breadcrumb">
           {St.levelList.map((item: any, index: number )=> <el-breadcrumb-item key={item.path}>
             { 
             item.redirect==='noredirect' || index=== St.levelList.length - 1 
               ?  <NoRedirect item={item} /> : <Redirect item={item} />
             }
           </el-breadcrumb-item>)}
-        </transition-group>
+        </TransitionGroup>
       </el-breadcrumb>
     )
   }

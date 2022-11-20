@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia'
 import { useNavTabsStore } from '@/store/navTabs.ts'
 import { useappStore } from '@/store/app.ts'
-import variables from '@/styles/variables.module.scss'        // ??
+import variables from '@/styles/variables.module.scss'
 import SideBarItem from './SideBarItem.tsx'
 
 const SideBar = defineComponent({

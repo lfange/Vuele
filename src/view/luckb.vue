@@ -1,17 +1,19 @@
 <template>
-  <el-button type="primary" @click="getPrize()">Start</el-button>
+  <div>
+    <el-button type="primary" @click="getPrize()">Start</el-button>
 
-  <el-tabs v-model:activeKey="active" @tab-click="change">
-    <el-tab-pane name="dobule" label="dobule ball"></el-tab-pane>
-    <el-tab-pane name="lucky" label="lucky ball"></el-tab-pane>
-  </el-tabs>
+    <el-tabs v-model:activeKey="active" @tab-click="change">
+      <el-tab-pane name="dobule" label="dobule ball"></el-tab-pane>
+      <el-tab-pane name="lucky" label="lucky ball"></el-tab-pane>
+    </el-tabs>
 
-  <div class="ball-container">
-    <div v-for="(ar, arindx) in luckArr">
-      <span :class="index + 1 <= len ? 'ball' : 'lastball'" v-for="(ball, index) in ar"> {{ ball }}</span>
-      <a-button type="text" danger @click="delet(arindx)">
-        <el-icon color="red"> <Delete /> </el-icon>
-      </a-button>
+    <div class="ball-container">
+      <div v-for="(ar, arindx) in luckArr">
+        <span :class="index + 1 <= len ? 'ball' : 'lastball'" v-for="(ball, index) in ar"> {{ ball }}</span>
+        <el-button type="text" danger @click="delet(arindx)">
+          <el-icon color="red"> <Delete /> </el-icon>
+        </el-button>
+      </div>
     </div>
   </div>
 </template>

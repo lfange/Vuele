@@ -25,11 +25,6 @@ const Layout = defineComponent({
     const { opened, falgs, device, withoutAnimation } = storeToRefs(appStore)
     const { CloseSideBar } = appStore
 
-    const handleClickOutside = () => {
-      // this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
-      CloseSideBar(false)
-    }
-
     const wrapStyle = () => {
       return {
         hideSidebar: !opened.value,
@@ -39,7 +34,7 @@ const Layout = defineComponent({
       }
     }
 
-    const DrawBack = () => device.value ==='mobile' && opened.value && <div class="drawer-bg" onclick={handleClickOutside} />
+    const DrawBack = () => device.value ==='mobile' && opened.value && <div class="drawer-bg" onclick={CloseSideBar(false)} />
 
     const changes = () => {
       appStore.$patch({
@@ -51,7 +46,7 @@ const Layout = defineComponent({
     // classObj,
     return () => (
       <div className={classname(wrapStyle(),'app-wrapper')}>
-        { DrawBack() }
+        <DrawBack />
         <Sidebar class="sidebar-container" />
         <div class="main-container">
           <Navbar />

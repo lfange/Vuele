@@ -82,5 +82,19 @@
     "checked": null,
     "permissions": null,
     "children": ""
+  },
+  {
+    "id": "7",
+    "parentId": "-1",
+    "path": "/luckb",
+    "component": "ind",
+    "redirect": null,
+    "name": "luckb",
+    "title": "luckb",
+    "icon": "Avatar",
+    "orders": 2,
+    "checked": null,
+    "permissions": null,
+    "children": ""
   }
 ]
