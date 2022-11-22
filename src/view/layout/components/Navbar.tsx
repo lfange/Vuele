@@ -1,8 +1,7 @@
 import { defineComponent } from 'vue';
 import { useappStore } from '@/store/app.ts'
 import Breadcrumb from '@/components/Breadcrumb/index.tsx'
-import { ArrowDown } from '@element-plus/icons-vue'
-
+import { ArrowDown, ArrowRight } from '@element-plus/icons-vue'
 const Navbar = defineComponent({
   name: 'Navbar',
   props: {
@@ -27,11 +26,23 @@ const Navbar = defineComponent({
         </svg>
       </div>
     )
+
+    const Breadcrumb1 = () => {
+      return (
+        <el-breadcrumb separator-icon={ArrowRight}>
+          <el-breadcrumb-item>homepage</el-breadcrumb-item>
+          <el-breadcrumb-item vShow={false}>promotion management</el-breadcrumb-item>
+          <el-breadcrumb-item>promotion list</el-breadcrumb-item>
+          <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+        </el-breadcrumb>
+      )
+    }
     
     return () => (
       <div class="navbar">
         <Hamburger  />
-        {/* <Breadcrumb /> */}
+        <Breadcrumb1 style="display: inline-block"/>
+        <Breadcrumb />
         <el-dropdown class="avatar-container" trigger="click">
           <span class="avatar-wrapper el-dropdown-link">
             Dropdown List

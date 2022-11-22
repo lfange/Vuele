@@ -11,6 +11,10 @@
     "orders": null,
     "checked": null,
     "permissions": null,
+    "meta": {
+      "title": "外面菜单",
+      "breadcrumb": true
+    },
     "children": [{
       "id": "1",
       "parentId": "-1",
@@ -23,6 +27,10 @@
       "orders": 1,
       "checked": null,
       "permissions": null,
+      "meta": {
+        "title": "菜单管理",
+        "breadcrumb": true
+      },
       "children": [
         {
           "id": "2",
@@ -81,6 +89,10 @@
     "orders": 2,
     "checked": null,
     "permissions": null,
+    "meta": {
+      "title": "dball",
+      "breadcrumb": true
+    },
     "children": ""
   },
   {
@@ -95,6 +107,24 @@
     "orders": 2,
     "checked": null,
     "permissions": null,
+    "children": ""
+  },
+  {
+    "id": "7",
+    "parentId": "-1",
+    "path": "/tsx",
+    "component": "ind",
+    "redirect": "nindex",
+    "name": "tsx",
+    "title": "tsx",
+    "icon": "Avatar",
+    "orders": 2,
+    "checked": null,
+    "permissions": null,
+    "meta": {
+      "title": "tsxtsx",
+      "breadcrumb": true
+    },
     "children": ""
   }
 ]

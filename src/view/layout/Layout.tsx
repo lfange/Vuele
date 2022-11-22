@@ -56,7 +56,7 @@ const Layout = defineComponent({
             <div>:\falgs { falgs.value } </div>
             <p>device: {device.value} </p>
             St: { St.sidebar.opened }
-          {/* <tags-view /> */}
+          <tags-view />
           <AppMain />
         </div>
       </div>

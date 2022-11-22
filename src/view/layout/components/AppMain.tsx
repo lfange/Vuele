@@ -1,6 +1,6 @@
 import { defineComponent, computed, Transition, KeepAlive } from 'vue';
 import { storeToRefs } from 'pinia'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useNavTabsStore } from '@/store/navTabs.ts'
 
 const AppMain = defineComponent({
@@ -10,9 +10,13 @@ const AppMain = defineComponent({
   setup() {
 
     const Route = useRoute()
+    const Router = useRouter()
+
+    const Component = computed(() => Route[this.currentPath.slice(1) || '/'] || NotFound)
 
     const navTabsStore = useNavTabsStore()
     const { tabsView } = storeToRefs(navTabsStore)
+    console.log('Router', Router)
 
     const key = computed(() => Route.fullPath)
     console.log('tabsView', tabsView)
@@ -23,6 +27,11 @@ const AppMain = defineComponent({
           <KeepAlive include={tabsView.value}>
             <router-view key={key.value} />
           </KeepAlive>
+          {/* <router-view v-slot={ Component } >
+            <KeepAlive include={tabsView.value}>
+              <component is={Component} />
+            </KeepAlive>
+          </router-view> */}
         </Transition>
       </section>
     )

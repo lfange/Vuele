@@ -1,13 +1,18 @@
 {
   "name": "Vuele",
-  "private": true,
   "version": "0.0.0",
+  "description": "Vue3 + Tsx + Elementplus + pinia, admin",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
+  "author": "lfange",
+  "bugs": {
+    "url": "https://github.com/lfange/Vuele/issues"
+  },
+  "homepage": "https://github.com/lfange/Vuele",
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^1.1.3",
