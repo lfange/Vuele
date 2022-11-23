@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 import AppMain from './components/AppMain.tsx'
 import Sidebar from './components/Sidebar/Sidebar.tsx'
 import Navbar from './components/Navbar.tsx'
-// import TagsView from './components/TagsView/index.vue'
+import TagsView from './components/TabsView/tabsView.tsx'
 // import { Navbar, Sidebar, AppMain, TagsView } from './components';
 import './layout.scss'
 import { useappStore } from '@/store/app.ts'
@@ -50,13 +50,13 @@ export default  defineComponent({
         <Sidebar class="sidebar-container" />
         <div class="main-container">
           <Navbar />
+          <TagsView />
           <el-button type="primary" onclick={changes}>Primary</el-button>
             opened: { opened.value ? '111' : '222' }
             <div>div:\ { appStore.falgs } </div>
             <div>:\falgs { falgs.value } </div>
             <p>device: {device.value} </p>
             St: { St.sidebar.opened }
-          <tags-view />
           <AppMain />
         </div>
       </div>

@@ -12,13 +12,10 @@ const AppMain = defineComponent({
     const Route = useRoute()
     const Router = useRouter()
 
-    const Component = computed(() => Route[this.currentPath.slice(1) || '/'] || NotFound)
-
     const navTabsStore = useNavTabsStore()
     const { tabsView } = storeToRefs(navTabsStore)
     console.log('Router', Router)
 
-    const key = computed(() => Route.fullPath)
     console.log('tabsView', tabsView)
 
     return () => (
