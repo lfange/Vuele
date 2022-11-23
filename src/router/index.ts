@@ -13,7 +13,7 @@ const routes: any[] = [
         name: 'dball',
         component: () => import('@/view/dball.tsx'),
         meta: {
-          title: 'meta'
+          title: 'dball'
         }
       },
       {
@@ -21,14 +21,44 @@ const routes: any[] = [
         name: 'luckb',
         component: () => import('@/view/luckb.vue'),
         meta: {
-          title: 'meta'
+          title: 'luckb',
+          breadcrumb: true
         }
       },
+      {
+        path: '/qindex',
+        name: 'qindex',
+        component: () => import('@/view/index.tsx'),
+        meta: {
+          title: 'qindex'
+        }
+      },
+      {
+        path: '/db',
+        name: 'db',
+        component: () => import('@/view/db.tsx'),
+        meta: {
+          title: 'db',
+          breadcrumb: true
+        }
+      },
+      {
+        path: 'menu/two/roles',
+        name: 'roles',
+        component: () => import('@/view/roles.tsx'),
+        meta: {
+          title: 'roles',
+          breadcrumb: true
+        }
+      }
     ]
   },
   {
-    path: '/tsx',
-    name: 'tsx',
+    path: '/dashboard',
+    name: 'dashboard',
+    meta: {
+      title: 'dashboard titlem'
+    },
     component: () => import('@/view/layout/Layout.tsx')
   },
   {

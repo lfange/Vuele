@@ -1,7 +1,9 @@
 import { defineComponent, onMounted, reactive } from 'vue'
 import { dblist, list, craw } from '../api/db'
 
-const index = defineComponent({
+
+export default defineComponent({
+  name: 'index',
   setup() {
     const state = reactive({
       tableData: [],
@@ -98,5 +100,3 @@ const index = defineComponent({
     )
   }
 })
-
-export default index

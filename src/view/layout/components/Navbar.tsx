@@ -27,21 +27,9 @@ const Navbar = defineComponent({
       </div>
     )
 
-    const Breadcrumb1 = () => {
-      return (
-        <el-breadcrumb separator-icon={ArrowRight}>
-          <el-breadcrumb-item>homepage</el-breadcrumb-item>
-          <el-breadcrumb-item vShow={false}>promotion management</el-breadcrumb-item>
-          <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-          <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-        </el-breadcrumb>
-      )
-    }
-    
     return () => (
       <div class="navbar">
         <Hamburger  />
-        <Breadcrumb1 style="display: inline-block"/>
         <Breadcrumb />
         <el-dropdown class="avatar-container" trigger="click">
           <span class="avatar-wrapper el-dropdown-link">

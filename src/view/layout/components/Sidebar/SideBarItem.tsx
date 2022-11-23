@@ -1,5 +1,5 @@
 import { defineComponent, toRefs, reactive } from 'vue'
-// import { isExternal } from '@/utils/validate.ts'
+import { isExternal } from '@/utils/validate.ts'
 import Link from './Link.tsx'
 import * as Icons from '@element-plus/icons-vue'
 
@@ -58,6 +58,7 @@ const SideBarItem = defineComponent({
       // } catch (e) {
       //   console.warn(`resolve menu has some problem:`, e)
       //   // Cannot access "path.resolve" in client code.
+      //   return routePath
       // }
         return routePath ?  `${props.basePath}/${routePath}` : props.basePath
     }
@@ -111,9 +112,9 @@ const SideBarItem = defineComponent({
     }
 
     return () => (
-      <>
+      <div>
         { props.item.children && props.item.children.length ? <SubMenu /> : <LinkItem /> }
-      </>
+      </div>
     )
   }
 })

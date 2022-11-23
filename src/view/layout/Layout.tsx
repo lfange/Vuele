@@ -11,7 +11,7 @@ import './layout.scss'
 import { useappStore } from '@/store/app.ts'
 // import ResizeMixin from './mixin/ResizeHandler'
 
-const Layout = defineComponent({
+export default  defineComponent({
   name: 'Layout',
 //   mixins: [ResizeMixin],
   setup() {
@@ -64,7 +64,6 @@ const Layout = defineComponent({
   }
 })
 
-export default Layout
 
 // import ResizeMixin from './mixin/ResizeHandler'
 

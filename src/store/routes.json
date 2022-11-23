@@ -35,8 +35,8 @@
         {
           "id": "2",
           "parentId": "-1",
-          "path": "three",
-          "component": "upms/dependence",
+          "path": "roles",
+          "component": "roles",
           "redirect": null,
           "name": "技术栈",
           "title": "技术栈",
@@ -52,11 +52,11 @@
   {
     "id": "2",
     "parentId": "-1",
-    "path": "/role",
+    "path": "/qindex",
     "component": "upms/role/index",
     "redirect": null,
     "name": "角色管理",
-    "title": "角色管理",
+    "title": "qindex",
     "icon": "Search",
     "orders": 2,
     "checked": null,
@@ -112,17 +112,35 @@
   {
     "id": "7",
     "parentId": "-1",
-    "path": "/tsx",
+    "path": "/dashboard",
     "component": "ind",
     "redirect": "nindex",
-    "name": "tsx",
-    "title": "tsx",
+    "name": "dashboard",
+    "title": "dashboard",
     "icon": "Avatar",
     "orders": 2,
     "checked": null,
     "permissions": null,
     "meta": {
-      "title": "tsxtsx",
+      "title": "dashboardtsx",
+      "breadcrumb": true
+    },
+    "children": ""
+  },
+  {
+    "id": "8",
+    "parentId": "-1",
+    "path": "/db",
+    "component": "ind",
+    "redirect": "nindex",
+    "name": "db",
+    "title": "db",
+    "icon": "Avatar",
+    "orders": 2,
+    "checked": null,
+    "permissions": null,
+    "meta": {
+      "title": "db",
       "breadcrumb": true
     },
     "children": ""
