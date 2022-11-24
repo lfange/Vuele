@@ -3,7 +3,7 @@ import { dblist, list, craw } from '../api/db'
 
 
 export default defineComponent({
-  name: 'index',
+  name: 'qindex',
   setup() {
     const state = reactive({
       tableData: [],
@@ -95,7 +95,6 @@ export default defineComponent({
           <el-table-column prop="num" label="number" width="180" />
           <el-table-column prop="count" label="count" width="180" />
         </el-table>
-        
       </div>
     )
   }

@@ -55,7 +55,7 @@
     "path": "/qindex",
     "component": "upms/role/index",
     "redirect": null,
-    "name": "角色管理",
+    "name": "qindex",
     "title": "qindex",
     "icon": "Search",
     "orders": 2,
@@ -91,7 +91,8 @@
     "permissions": null,
     "meta": {
       "title": "dball",
-      "breadcrumb": true
+      "breadcrumb": true,
+      "addtab": true
     },
     "children": ""
   },
@@ -107,6 +108,11 @@
     "orders": 2,
     "checked": null,
     "permissions": null,
+    "meta": {
+      "title": "dball",
+      "breadcrumb": true,
+      "addtab": true
+    },
     "children": ""
   },
   {
@@ -123,7 +129,8 @@
     "permissions": null,
     "meta": {
       "title": "dashboardtsx",
-      "breadcrumb": true
+      "breadcrumb": true,
+      "addtab": true
     },
     "children": ""
   },
@@ -141,7 +148,8 @@
     "permissions": null,
     "meta": {
       "title": "db",
-      "breadcrumb": true
+      "breadcrumb": true,
+      "addtab": true
     },
     "children": ""
   }

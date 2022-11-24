@@ -13,7 +13,8 @@ const routes: any[] = [
         name: 'dball',
         component: () => import('@/view/dball.tsx'),
         meta: {
-          title: 'dball'
+          title: 'dball',
+          addtab: true
         }
       },
       {
@@ -22,15 +23,17 @@ const routes: any[] = [
         component: () => import('@/view/luckb.vue'),
         meta: {
           title: 'luckb',
-          breadcrumb: true
+          breadcrumb: true,
+          addtab: true
         }
       },
       {
         path: '/qindex',
         name: 'qindex',
-        component: () => import('@/view/index.tsx'),
+        component: () => import('@/view/qindex.tsx'),
         meta: {
-          title: 'qindex'
+          title: 'qindex',
+          addtab: true
         }
       },
       {
@@ -39,7 +42,8 @@ const routes: any[] = [
         component: () => import('@/view/db.tsx'),
         meta: {
           title: 'db',
-          breadcrumb: true
+          breadcrumb: true,
+          addtab: true
         }
       },
       {
@@ -48,7 +52,8 @@ const routes: any[] = [
         component: () => import('@/view/roles.tsx'),
         meta: {
           title: 'roles',
-          breadcrumb: true
+          breadcrumb: true,
+          addtab: true
         }
       }
     ]
@@ -64,7 +69,7 @@ const routes: any[] = [
   {
     path: '/index',
     name: 'index',
-    component: () => import('@/view/index.tsx')
+    component: () => import('@/view/qindex.tsx')
   },
   {
     path: '/home',
@@ -75,9 +80,7 @@ const routes: any[] = [
     path: '/layout',
     name: 'layout',
     component: () => import('@/components/layout/layout.tsx')
-  },
-
-  
+  }
 ]
 
 const router = createRouter({

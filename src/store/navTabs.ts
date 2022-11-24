@@ -21,19 +21,22 @@ export const useNavTabsStore = defineStore('navTabs', () => {
     menuRoutes: [],
   })
       
-  function addTab(route: RouteLocationNormalized) {
+  function addTab(route) {
     if (!route.meta.addtab) return
+    console.log(route.meta.title, ':=> ', route, )
     for (const key in state.tabsView) {
+      console.log('key', key)
         if (state.tabsView[key].path === route.path) {
-            state.tabsView[key].params = !isEmpty(route.params) ? route.params : state.tabsView[key].params
-            state.tabsView[key].query = !isEmpty(route.query) ? route.query : state.tabsView[key].query
-            return
+    //         state.tabsView[key].params = !isEmpty(route.params) ? route.params : state.tabsView[key].params
+    //         state.tabsView[key].query = !isEmpty(route.query) ? route.query : state.tabsView[key].query
+    //         return
         }
     }
     if (typeof route.meta.title == 'string') {
         route.meta.title = route.meta.title.indexOf('pagesTitle.') === -1 ? route.meta.title : i18n.global.t(route.meta.title)
     }
     state.tabsView.push(route)
+    console.log('addTab pushpush', state.tabsView)
   }
 
   function closeTab(route: RouteLocationNormalized) {
@@ -67,7 +70,7 @@ export const useNavTabsStore = defineStore('navTabs', () => {
  function encodeRoutesURI(data: RouteRecordRaw[]) {
    data.forEach((item) => {
       if (item.meta?.type == 'iframe') {
-          item.path = '/admin/iframe/' + encodeURIComponent(item.path)
+          item.path = '/admin/' + encodeURIComponent(item.path)
       }
 
       if (item.children && item.children.length) {

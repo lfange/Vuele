@@ -16,15 +16,12 @@ const Breadcrumb = defineComponent({
 
     const getBreadcrumb = () => {
       let matched = Route.matched.filter(item => item.name)
-      console.log('Route', Route)
       const first = matched[0]
       if (first && first.name !== 'dashboard') {
         matched = [{ path: '/dashboard', meta: { title: '首页', breadcrumb: true }}].concat(matched)
       }
 
       St.levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-
-      console.log('St.levelList.value', St.levelList.value)
     }
  
     getBreadcrumb()

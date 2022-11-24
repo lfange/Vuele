@@ -21,6 +21,7 @@
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^2.3.0",
     "vue": "^3.2.41",

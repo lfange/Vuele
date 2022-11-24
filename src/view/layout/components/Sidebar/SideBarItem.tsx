@@ -2,6 +2,8 @@ import { defineComponent, toRefs, reactive } from 'vue'
 import { isExternal } from '@/utils/validate.ts'
 import Link from './Link.tsx'
 import * as Icons from '@element-plus/icons-vue'
+// import path from 'path'
+// var path = require('path')
 
 const SideBarItem = defineComponent({
   name: 'SideBarItem',
