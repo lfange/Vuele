@@ -47,7 +47,7 @@ const routes: any[] = [
         }
       },
       {
-        path: 'menu/two/roles',
+        path: '/menu/two/roles',
         name: 'roles',
         component: () => import('@/view/roles.tsx'),
         meta: {
@@ -62,7 +62,9 @@ const routes: any[] = [
     path: '/dashboard',
     name: 'dashboard',
     meta: {
-      title: 'dashboard titlem'
+      title: 'dashboard titlem',
+      affix: true,
+      addtab: true
     },
     component: () => import('@/view/layout/Layout.tsx')
   },

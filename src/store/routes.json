@@ -63,20 +63,7 @@
     "permissions": null,
     "children": ""
   },
-  {
-    "id": "6",
-    "parentId": "-1",
-    "path": "http://baidu.com",
-    "component": "index",
-    "redirect": null,
-    "name": "跳转百度",
-    "title": "baidu",
-    "icon": "Connection",
-    "orders": 2,
-    "checked": null,
-    "permissions": null,
-    "children": ""
-  },
+
   {
     "id": "7",
     "parentId": "-1",
@@ -130,7 +117,8 @@
     "meta": {
       "title": "dashboardtsx",
       "breadcrumb": true,
-      "addtab": true
+      "addtab": true,
+      "affix": true
     },
     "children": ""
   },

@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from 'vue'
+import { defineComponent } from 'vue'
 import classname from 'classnames'
 // import Navbar from './components/Navbar';
 import { storeToRefs } from 'pinia'
@@ -10,19 +10,15 @@ import TagsView from './components/TabsView/tabsView.tsx'
 import './layout.scss'
 import { useappStore } from '@/store/app.ts'
 // import ResizeMixin from './mixin/ResizeHandler'
+import { useNavTabsStore } from '@/store/navTabs.ts'
 
 export default  defineComponent({
   name: 'Layout',
 //   mixins: [ResizeMixin],
   setup() {
-    const St = reactive({
-      sidebar: {
-        opened: true
-      }
-    })
 
     const appStore = useappStore()
-    const { opened, falgs, device, withoutAnimation } = storeToRefs(appStore)
+    const { opened, device, withoutAnimation } = storeToRefs(appStore)
     const { CloseSideBar } = appStore
 
     const wrapStyle = () => {
@@ -36,14 +32,6 @@ export default  defineComponent({
 
     const DrawBack = () => device.value ==='mobile' && opened.value && <div class="drawer-bg" onclick={CloseSideBar(false)} />
 
-    const changes = () => {
-      appStore.$patch({
-        device: 'mobile',
-        falgs: 'change falgs'
-      })
-    }
-    
-    // classObj,
     return () => (
       <div className={classname(wrapStyle(),'app-wrapper')}>
         <DrawBack />
@@ -51,12 +39,6 @@ export default  defineComponent({
         <div class="main-container">
           <Navbar />
           <TagsView />
-          <el-button type="primary" onclick={changes}>Primary</el-button>
-            opened: { opened.value ? '111' : '222' }
-            <div>div:\ { appStore.falgs } </div>
-            <div>:\falgs { falgs.value } </div>
-            <p>device: {device.value} </p>
-            St: { St.sidebar.opened }
           <AppMain />
         </div>
       </div>
@@ -72,19 +54,4 @@ export default  defineComponent({
 //     TagsView
 //   },
 //   mixins: [ResizeMixin],
-//   computed: {
-//     classObj() {
-//       return {
-//         hideSidebar: !this.sidebar.opened,
-//         openSidebar: this.sidebar.opened,
-//         withoutAnimation: this.sidebar.withoutAnimation,
-//         mobile: this.device === 'mobile'
-//       }
-//     }
-//   },
-//   methods: {
-//     handleClickOutside() {
-//       this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
-//     }
-//   }
 // }

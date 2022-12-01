@@ -1,21 +1,27 @@
-import { defineComponent, watch } from 'vue'
+import { defineComponent, watch, reactive } from 'vue';
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useNavTabsStore } from '@/store/navTabs.ts'
 import Link from '../Sidebar/Link.tsx'
 import { Close } from '@element-plus/icons-vue'
+import Routes from '@/store/routes.json'
 
 export default defineComponent({
   name: 'tabsView',
   setup() {
     const Route = useRoute()
     const Router = useRouter()
-
+    const St = reactive({
+      menu: []
+    })
     const navbar = useNavTabsStore()
+
+    navbar.setMenuRoutes(Routes)
 
     navbar.addTab(Route)
     watch(Route, () => {
-      console.log('Watch ', Route.meta.title)
-      navbar.addTab(JSON.parse(JSON.stringify(Route)))
+      navbar.addTab(Route)
+      console.log(' Watch Watch',  Route.meta.title)
+      console.log('Watch St.menu ', St.menu,)
     })
 
     const isActive = (route) => {
@@ -27,23 +33,22 @@ export default defineComponent({
       navbar.closeTab(view)
     }
 
-    const teeee = (tab) => {
-      console.log('teeee', tab)
+    const teeee = () => {
+      console.log('Primary St.menu', St.menu)
     }
 
     return () => (
       <div id="tags-view-container" class="tags-view-container">
         <el-scrollbar class="tags-view-wrapper">
           { navbar.tabsView.map((tab: any) => (
-
             <RouterLink
-              to={{ path: tab.path, query: tab.query, fullPath: tab.fullPath }}
+              to={{ path: tab.path }}
               key={tab.path}
               ref="tab"
               tag="span"
               class={[isActive(tab) ? 'active' : '', 'tags-view-item']}
             >
-              {tab.meta.title} {teeee(tab.meta)}
+              {tab.meta.title}
               { !tab.meta.affix && <el-icon class="el-icon-close"><Close onclick={() => closeSelectedTag(tab)} /></el-icon>}
             </RouterLink>
             // <router-link
