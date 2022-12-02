@@ -31,10 +31,7 @@ return value == 'getCurrentDomain'
 //     /*
 //      * 全局注册element Plus的icon
 //      */
-//     const icons = elIcons as any
-//     for (const i in icons) {
-//         app.component(`el-icon-${icons[i].name}`, icons[i])
-//     }
+//     const icons = elIcons as anyyar
 // }
 
 /**
