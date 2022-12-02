@@ -1,7 +1,17 @@
-import { defineComponent } from 'vue'
+import { defineComponent, watch } from 'vue';
+import { setTitleFromRoute } from '@/utils/common.ts'
+import { useRoute } from 'vue-router'
 
-const App = defineComponent({
+export default defineComponent({
   setup() {
+    const route = useRoute()
+
+    watch(() => route.path,
+      () => {
+        setTitleFromRoute()
+      }
+    )
+
     return () => (
       <router-view>
         {{
@@ -13,5 +23,3 @@ const App = defineComponent({
     )
   }
 })
-
-export default App

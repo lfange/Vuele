@@ -68,6 +68,9 @@ const routes: any[] = [
     },
     component: () => import('@/view/layout/Layout.tsx')
   },
+  // {
+    
+  // },
   {
     path: '/index',
     name: 'index',
