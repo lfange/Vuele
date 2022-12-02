@@ -19,6 +19,8 @@ export const useNavTabsStore = defineStore('navTabs', () => {
     tabFullScreen: false,
     // 从后台加载到的菜单路由列表
     menuRoutes: [],
+    // 按钮权限节点
+    authNode: new Map()
   })
       
   function addTab(route) {
@@ -60,11 +62,17 @@ export const useNavTabsStore = defineStore('navTabs', () => {
     }
   }
 
+  
+  const setAuthNode = (key: string, data: string[]) => {
+    state.authNode.set(key, data)
+  }
+
   return {
     ...toRefs(state),
     addTab,
     closeTab,
-    setMenuRoutes
+    setMenuRoutes,
+    setAuthNode
   }
 })
 

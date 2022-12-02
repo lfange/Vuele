@@ -84,6 +84,7 @@ function getPrize() {
 }
 
 function change(tab) {
+  console.log('@/utils/common.ts', tab)
   luckArr.value = JSON.parse(localStorage.getItem(tab)) || []
 }
 
