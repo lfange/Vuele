@@ -1,8 +1,8 @@
 import axios, { AxiosPromise, Method } from 'axios'
 import type { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios'
 import { ElNotification } from 'element-plus'
-import router from '@/router/index'
-import { i18n } from '@/lang/index'
+import router from '@/router/index.ts'
+import { i18n } from '@/lang/index.ts'
 
 window.requests = []
 window.tokenRefreshing = false

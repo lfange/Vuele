@@ -1,31 +1,41 @@
 import { nextTick } from 'vue'
 import type { App } from 'vue'
 import * as elIcons from '@element-plus/icons-vue'
-import router from '@/router/index'
-import Icon from '@/components/icon/index.vue'
-import { useNavTabs } from '@/stores/navTabs'
+import router from '@/router/index.ts'
+// import Icon from '@/components/icon/index.vue'
+import { useNavTabsStore } from '@/store/navTabs.ts'
 import { ElForm } from 'element-plus'
-import { useSiteConfig } from '../stores/siteConfig'
+import { useSiteConfig } from '@/store/siteConfig.ts'
 import { useTitle } from '@vueuse/core'
 import { i18n } from '../lang'
-import { getUrl } from './request.ts'
+// import { getUrl } from './request.ts'
 
-export function registerIcons(app: App) {
-    /*
-     * 全局注册 Icon
-     * 使用方式: <Icon name="name" size="size" color="color" />
-     * 详见<待完善>
-     */
-    app.component('Icon', Icon)
-
-    /*
-     * 全局注册element Plus的icon
-     */
-    const icons = elIcons as any
-    for (const i in icons) {
-        app.component(`el-icon-${icons[i].name}`, icons[i])
-    }
+/*
+ * 根据运行环境获取基础请求URL
+ */
+export const getUrl = (): string => {
+    const value: string = import.meta.env.VITE_AXIOS_BASE_URL as string
+return value == 'getCurrentDomain'
+    ? window.location.protocol + '//' + window.location.host
+    : value
 }
+
+// export function registerIcons(app: App) {
+//     /*
+//      * 全局注册 Icon
+//      * 使用方式: <Icon name="name" size="size" color="color" />
+//      * 详见<待完善>
+//      */
+//     app.component('Icon', Icon)
+
+//     /*
+//      * 全局注册element Plus的icon
+//      */
+//     const icons = elIcons as any
+//     for (const i in icons) {
+//         app.component(`el-icon-${icons[i].name}`, icons[i])
+//     }
+// }
 
 /**
  * 加载网络css文件
@@ -170,7 +180,7 @@ export const getFileNameFromPath = (path: string) => {
  * @param name
  */
 export const auth = (name: string) => {
-    const navTabs = useNavTabs()
+    const navTabs = useNavTabsStore()
     if (navTabs.state.authNode.has(router.currentRoute.value.path)) {
         if (navTabs.state.authNode.get(router.currentRoute.value.path)!.some((v: string) => v == router.currentRoute.value.path + '/' + name)) {
             return true
